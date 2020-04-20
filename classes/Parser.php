@@ -20,12 +20,6 @@ class Parser
         // дулим юрл на части без QUERY_STRING по слэшу
         $urlParts = array_values(array_filter(explode('/', $urlParamsCheck[0])));
 
-        // динамически запрашиваем файл
-        if (!isset($urlParts[0]) || !file_exists(CLASSES_PATH . ucfirst($urlParts[0]) . '.php'))
-            return json_encode($response);
-        else
-            require_once CLASSES_PATH . ucfirst($urlParts[0]) . '.php';
-
         // проверяем класс
         if (!class_exists($urlParts[0]))
             return json_encode($response);
